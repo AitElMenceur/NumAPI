@@ -40,6 +40,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
 
-
+        
     }
 }
