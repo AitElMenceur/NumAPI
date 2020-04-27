@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
+                Resfreshdata();
             }
         });
         recyclerView.setHasFixedSize(true);
@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
 
-        
+
+    }
+
+    private void Resfreshdata() {
+        Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
+        refreshLayout.setRefreshing(false);
     }
 }
