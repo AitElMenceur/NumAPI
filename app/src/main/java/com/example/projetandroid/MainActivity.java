@@ -1,4 +1,9 @@
 package com.example.projetandroid;
+/*
+
+API KEY: 9JUYFJMS0BK2O37M
+
+ */
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -21,26 +26,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         refreshLayout = findViewById(R.id.swiperefresh);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Resfreshdata();
             }
         });
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
+        for (Compagny c : Compagny.values()) {
+            input.add(c.getName());
         }
-
         mAdapter = new ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
-
-
     }
 
     private void Resfreshdata() {
