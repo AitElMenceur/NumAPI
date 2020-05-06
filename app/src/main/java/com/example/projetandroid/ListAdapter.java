@@ -1,11 +1,21 @@
 package com.example.projetandroid;
 
+import android.app.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -72,20 +82,32 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         final String name = values.get(position);
         holder.txtHeader.setText(name);
+
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                remove(position);
+                String symbol = "";
+                for (Compagny c : Compagny.values()) {
+
+                    if (c.getName().equals(name)) {
+                        symbol = c.getID();
+                        break;
+                    }
+                }
+                Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(v.getContext(), Detail.class);
+                intent.putExtra("Title", name);
+
+                intent.putExtra("Symbol", symbol);
+
+                v.getContext().startActivity(intent);
+
+
             }
         });
-        for (Compagny c : Compagny.values()) {
-            if (c.getName().equals(name)) {
-                holder.txtFooter.setText(c.getSector());
-                break;
-            }
-        }
 
     }
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override

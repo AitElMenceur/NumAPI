@@ -6,6 +6,8 @@ API KEY: 9JUYFJMS0BK2O37M
  */
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 Resfreshdata();
             }
         });
+        ShowList();
+        //    APICall("IBM");
+    }
+
+    private void ShowList() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -52,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         }
         mAdapter = new ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
-        APICall();
     }
 
     private void Resfreshdata() {
@@ -61,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void APICall() {
+    private void APICall(String symbol) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -73,13 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 
-        Call<RestAlphaRespond> call = gerritAPI.getStock("TIME_SERIES_INTRADAY", "IBM", "5min", "9JUYFJMS0BK2O37M");
+        Call<RestAlphaRespond> call = gerritAPI.getStock("TIME_SERIES_INTRADAY", symbol, "5min", "demo");
         call.enqueue(new Callback<RestAlphaRespond>() {
             @Override
             public void onResponse(Call<RestAlphaRespond> call, Response<RestAlphaRespond> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<MetaData> metaDataList = response.body().getMetaDataList();
-                    Toast.makeText(getApplicationContext(), "API Success", Toast.LENGTH_LONG).show();
+                    MetaData metaData = response.body().getMetaData();
+                    TimeSerial timeSerie = response.body().getTimeSerie();
+                    Toast.makeText(getApplicationContext(), metaData.getSymbol(), Toast.LENGTH_LONG).show();
                 } else {
                     showAPIError();
                 }

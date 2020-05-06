@@ -6,7 +6,7 @@ import retrofit2.http.Query;
 
 public interface GerritAPI {
 
-    @GET("/query?")
+    @GET("/query")
     Call<RestAlphaRespond> getStock(
             @Query("function") String function,
             @Query("symbol") String symbol,

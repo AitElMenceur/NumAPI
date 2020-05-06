@@ -1,21 +1,21 @@
 package com.example.projetandroid;
 
-import java.util.List;
+
+import com.google.gson.annotations.*;
 
 public class RestAlphaRespond {
-    private List<MetaData> metaDataList;
-    private List<TimeSerie> timeSerieList;
 
-    public RestAlphaRespond(List<MetaData> metaDataList, List<TimeSerie> timeSerieList) {
-        this.metaDataList = metaDataList;
-        this.timeSerieList = timeSerieList;
+    @SerializedName("Meta Data")
+    private MetaData metaData;
+
+    @SerializedName("Time Series (5min)")
+    private TimeSerial timeSerial;
+
+    public MetaData getMetaData() {
+        return metaData;
     }
 
-    public List<MetaData> getMetaDataList() {
-        return metaDataList;
-    }
-
-    public List<TimeSerie> getTimeSerieList() {
-        return timeSerieList;
+    public TimeSerial getTimeSerie() {
+        return timeSerial;
     }
 }
