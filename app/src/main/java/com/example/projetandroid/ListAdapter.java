@@ -86,19 +86,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String symbol = "";
-                for (Compagny c : Compagny.values()) {
 
-                    if (c.getName().equals(name)) {
-                        symbol = c.getID();
-                        break;
-                    }
-                }
-                Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(v.getContext(), Detail.class);
-                intent.putExtra("Title", name);
-
-                intent.putExtra("Symbol", symbol);
+                intent.putExtra("Number", Integer.toString(position));
 
                 v.getContext().startActivity(intent);
 

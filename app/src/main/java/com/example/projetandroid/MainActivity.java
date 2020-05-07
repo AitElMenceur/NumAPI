@@ -1,9 +1,5 @@
 package com.example.projetandroid;
-/*
 
-API KEY: 9JUYFJMS0BK2O37M
-
- */
 
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
-    static final String BASE_URL = "https://www.alphavantage.co";
+    static final String BASE_URL = "https://numbersapi.p.rapidapi.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ShowList();
-        //    APICall("IBM");
+        APICall("3");
     }
 
     private void ShowList() {
@@ -54,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         List<String> input = new ArrayList<>();
-        for (Compagny c : Compagny.values()) {
-            input.add(c.getName());
+        for (int i = 0; i < 200; i++) {
+            input.add(Integer.toString(i));
         }
         mAdapter = new ListAdapter(input);
         recyclerView.setAdapter(mAdapter);
@@ -64,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private void Resfreshdata() {
         Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
         refreshLayout.setRefreshing(false);
+        APICall("2");
     }
 
 
@@ -79,21 +76,21 @@ public class MainActivity extends AppCompatActivity {
 
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 
-        Call<RestAlphaRespond> call = gerritAPI.getStock("TIME_SERIES_INTRADAY", symbol, "5min", "demo");
-        call.enqueue(new Callback<RestAlphaRespond>() {
+        Call<RestNumbersAPI> call = gerritAPI.GetJson(symbol, "true");
+        call.enqueue(new Callback<RestNumbersAPI>() {
             @Override
-            public void onResponse(Call<RestAlphaRespond> call, Response<RestAlphaRespond> response) {
+            public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    MetaData metaData = response.body().getMetaData();
-                    TimeSerial timeSerie = response.body().getTimeSerie();
-                    Toast.makeText(getApplicationContext(), metaData.getSymbol(), Toast.LENGTH_LONG).show();
+                    String Fact = response.body().getFact();
+
+                    Toast.makeText(getApplicationContext(), Fact, Toast.LENGTH_LONG).show();
                 } else {
-                    showAPIError();
+                    Toast.makeText(getApplicationContext(), "Offline", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<RestAlphaRespond> call, Throwable t) {
+            public void onFailure(Call<RestNumbersAPI> call, Throwable t) {
                 showAPIError();
             }
 

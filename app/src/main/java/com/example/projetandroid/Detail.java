@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Detail extends AppCompatActivity {
-    static final String BASE_URL = "https://www.alphavantage.co";
+    static final String BASE_URL = "https://numbersapi.p.rapidapi.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,10 @@ public class Detail extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         Intent secondIntent = getIntent();
-        String title = secondIntent.getStringExtra("Title");
-        String symbol = secondIntent.getStringExtra("Symbol");
+        String symbol = secondIntent.getStringExtra("Number");
         TextView Title = findViewById(R.id.Title);
 
-        Title.setText(title);
+        Title.setText(symbol);
         APICall(symbol);
     }
 
@@ -45,27 +44,27 @@ public class Detail extends AppCompatActivity {
 
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 
-        Call<RestAlphaRespond> call = gerritAPI.getStock("TIME_SERIES_INTRADAY", symbol, "5min", "9JUYFJMS0BK2O37M");
-        call.enqueue(new Callback<RestAlphaRespond>() {
+        Call<RestNumbersAPI> call = gerritAPI.GetJson(symbol, "true");
+        call.enqueue(new Callback<RestNumbersAPI>() {
             @Override
-            public void onResponse(Call<RestAlphaRespond> call, Response<RestAlphaRespond> response) {
+            public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    MetaData metaData = response.body().getMetaData();
-                    TimeSerial timeSerie = response.body().getTimeSerie();
-                    TextView Last_Refreshed = findViewById(R.id.Last_Refreshed);
-                    Last_Refreshed.setText(metaData.getLast_Refreshed());
-
+                    String Fact = response.body().getFact();
+                    Toast.makeText(getApplicationContext(), Fact, Toast.LENGTH_LONG).show();
+                    TextView Txt_Fact = findViewById(R.id.Txt_Fact);
+                    Txt_Fact.setText(Fact);
                 } else {
-                    showAPIError();
+                    Toast.makeText(getApplicationContext(), "Offline", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<RestAlphaRespond> call, Throwable t) {
+            public void onFailure(Call<RestNumbersAPI> call, Throwable t) {
                 showAPIError();
             }
 
         });
+
     }
 
     private void showAPIError() {
