@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.projetandroid.data.GerritAPI;
+import com.example.projetandroid.presentation.model.RestNumbersAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

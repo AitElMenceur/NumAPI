@@ -1,11 +1,9 @@
-package com.example.projetandroid;
+package com.example.projetandroid.presentation.view;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.projetandroid.Constant;
+import com.example.projetandroid.R;
+import com.example.projetandroid.data.GerritAPI;
+import com.example.projetandroid.presentation.model.RestNumbersAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
