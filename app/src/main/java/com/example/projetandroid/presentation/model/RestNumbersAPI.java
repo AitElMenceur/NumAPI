@@ -1,4 +1,4 @@
-package com.example.projetandroid;
+package com.example.projetandroid.presentation.model;
 
 
 import com.google.gson.annotations.*;
