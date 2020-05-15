@@ -1,15 +1,15 @@
 package com.example.projetandroid.presentation.view;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.example.projetandroid.Constant;
+
 import com.example.projetandroid.R;
+import com.example.projetandroid.presentation.Singletons;
 import com.example.projetandroid.presentation.controller.MainController;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 Resfreshdata();
             }
         });
-        controller = new MainController(this, getSharedPreferences(Constant.FACT_PREF, Context.MODE_PRIVATE));
+        controller = new MainController(this, Singletons.getSharedPreferencesInstance(this));
         controller.onStart();
 
     }
@@ -50,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 200; i++) {
             input.add(Integer.toString(i));
         }
-        mAdapter = new ListAdapter(input);
+        mAdapter = new ListAdapter(input, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String item) {
+                controller.onItemClick(item);
+
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
