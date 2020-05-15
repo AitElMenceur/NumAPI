@@ -1,21 +1,14 @@
 package com.example.projetandroid;
 
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,46 +16,21 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private ListAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private SwipeRefreshLayout refreshLayout;
+public class Detail extends AppCompatActivity {
     static final String BASE_URL = "https://numbersapi.p.rapidapi.com/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        refreshLayout = findViewById(R.id.swiperefresh);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Resfreshdata();
-            }
-        });
-        ShowList();
-        APICall("3");
-    }
+        setContentView(R.layout.activity_detail);
 
-    private void ShowList() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 200; i++) {
-            input.add(Integer.toString(i));
-        }
-        mAdapter = new ListAdapter(input);
-        recyclerView.setAdapter(mAdapter);
-    }
+        Intent secondIntent = getIntent();
+        String symbol = secondIntent.getStringExtra("Number");
+        TextView Title = findViewById(R.id.Title);
 
-    private void Resfreshdata() {
-        Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
-        refreshLayout.setRefreshing(false);
-        APICall("2");
+        Title.setText(symbol);
+        APICall(symbol);
     }
-
 
     private void APICall(String symbol) {
         Gson gson = new GsonBuilder()
@@ -82,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String Fact = response.body().getFact();
-
                     Toast.makeText(getApplicationContext(), Fact, Toast.LENGTH_LONG).show();
+                    TextView Txt_Fact = findViewById(R.id.Txt_Fact);
+                    Txt_Fact.setText(Fact);
                 } else {
                     Toast.makeText(getApplicationContext(), "Offline", Toast.LENGTH_LONG).show();
                 }
@@ -102,3 +71,4 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_LONG).show();
     }
 }
+
