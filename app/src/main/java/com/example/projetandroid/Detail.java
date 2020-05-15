@@ -2,7 +2,9 @@ package com.example.projetandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,19 +19,31 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Detail extends AppCompatActivity {
-    static final String BASE_URL = "https://numbersapi.p.rapidapi.com/";
 
+    private SharedPreferences sharedPreferences;
+    private String Fact;
+    private TextView Txt_Fact;
+    private TextView Title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
+        sharedPreferences = getSharedPreferences(Constant.FACT_PREF, Context.MODE_PRIVATE);
         Intent secondIntent = getIntent();
         String symbol = secondIntent.getStringExtra("Number");
-        TextView Title = findViewById(R.id.Title);
+        Title = findViewById(R.id.Title);
 
         Title.setText(symbol);
-        APICall(symbol);
+        showFact(symbol);
+    }
+
+    private void showFact(String symbol) {
+        Txt_Fact = findViewById(R.id.Txt_Fact);
+        Txt_Fact.setText(getAFact(symbol));
+    }
+
+    private String getAFact(String symbol) {
+        return sharedPreferences.getString("cle_string" + symbol, null);
     }
 
     private void APICall(String symbol) {
@@ -38,7 +52,7 @@ public class Detail extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -49,9 +63,9 @@ public class Detail extends AppCompatActivity {
             @Override
             public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String Fact = response.body().getFact();
+                    Fact = response.body().getFact();
                     Toast.makeText(getApplicationContext(), Fact, Toast.LENGTH_LONG).show();
-                    TextView Txt_Fact = findViewById(R.id.Txt_Fact);
+                    Txt_Fact = findViewById(R.id.Txt_Fact);
                     Txt_Fact.setText(Fact);
                 } else {
                     Toast.makeText(getApplicationContext(), "Offline", Toast.LENGTH_LONG).show();
