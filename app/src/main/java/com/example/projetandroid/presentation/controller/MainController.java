@@ -1,21 +1,17 @@
 package com.example.projetandroid.presentation.controller;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.example.projetandroid.Constant;
-import com.example.projetandroid.data.GerritAPI;
+import com.example.projetandroid.presentation.Singletons;
+import com.example.projetandroid.presentation.model.Fact;
 import com.example.projetandroid.presentation.model.RestNumbersAPI;
+import com.example.projetandroid.presentation.view.Detail;
 import com.example.projetandroid.presentation.view.MainActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
     private SharedPreferences sharedPreferences;
@@ -30,31 +26,23 @@ public class MainController {
         view.ShowList();
     }
 
-    public void onItemClick() {
+    public void onItemClick(String position) {
+        Intent intent = new Intent(view.getApplicationContext(), Detail.class);
+        intent.putExtra("Number", position);
+        view.startActivity(intent);
 
     }
 
     private void APICall(String symbol) {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
-
-        Call<RestNumbersAPI> call = gerritAPI.GetJson(symbol, "true");
+        Call<RestNumbersAPI> call = Singletons.getgerritAPIInstance().GetJson(symbol, "true");
         call.enqueue(new Callback<RestNumbersAPI>() {
             @Override
             public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String Fact = response.body().getFact();
-                    saveaFact(symbol, Fact);
+                    Fact fact = new Fact(response.body().getFact(), response.body().getNumber(), response.body().isFound());
+                    saveaFact(symbol, fact);
                 } else {
-                    Toast.makeText(view, "Offline", Toast.LENGTH_LONG).show();
+                    Toast.makeText(view, "could'nt find " + symbol, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -66,11 +54,11 @@ public class MainController {
         });
     }
 
-    private void saveaFact(String symbol, String fact) {
+    private void saveaFact(String symbol, Fact fact) {
         int number = Integer.parseInt(symbol);
         sharedPreferences
                 .edit()
-                .putString("cle_string" + number, fact)
+                .putString("cle_string" + number, Singletons.getGsonInstance().toJson(fact))
                 .apply();
     }
 
