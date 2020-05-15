@@ -1,4 +1,4 @@
-package com.example.projetandroid;
+package com.example.projetandroid.presentation.model;
 
 
 import com.google.gson.annotations.*;
@@ -7,10 +7,11 @@ public class RestNumbersAPI {
 
     @SerializedName("text")
     private String Fact;
+    @SerializedName("number")
+    private int number;
     @SerializedName("found")
     private boolean found;
-    @SerializedName("number")
-    private String number;
+
 
     public String getFact() {
         return Fact;
@@ -20,7 +21,7 @@ public class RestNumbersAPI {
         return found;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 }

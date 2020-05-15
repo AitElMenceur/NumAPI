@@ -1,27 +1,24 @@
-package com.example.projetandroid;
+package com.example.projetandroid.presentation.view;
 
-import android.app.Activity;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.projetandroid.R;
 
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<String> values;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(String item);
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -58,10 +55,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<String> myDataset) {
-        values = myDataset;
+    public ListAdapter(List<String> myDataset, OnItemClickListener listener) {
+        this.values = myDataset;
+        this.listener = listener;
     }
 
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
     // Create new views (invoked by the layout manager)
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -75,25 +76,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return vh;
     }
 
-    // Remplace les element visible de la liste (Scrolling)
+    // Remplace les elements visible de la liste (Scrolling)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
         final String name = values.get(position);
         holder.txtHeader.setText(name);
-
-        holder.txtHeader.setOnClickListener(new OnClickListener() {
+        holder.itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Intent intent = new Intent(v.getContext(), Detail.class);
-                intent.putExtra("Number", Integer.toString(position));
-
-                v.getContext().startActivity(intent);
-
-
+                listener.onItemClick(name);
             }
         });
 
