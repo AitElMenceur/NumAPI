@@ -1,6 +1,8 @@
 package com.example.projetandroid;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
-    static final String BASE_URL = "https://numbersapi.p.rapidapi.com/";
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(Constant.FACT_PREF, Context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         refreshLayout = findViewById(R.id.swiperefresh);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -41,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ShowList();
-        APICall("3");
     }
 
     private void ShowList() {
@@ -57,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
+
     private void Resfreshdata() {
-        Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
+        refreshLayout.setRefreshing(true);
+        saveAllFact();
         refreshLayout.setRefreshing(false);
-        APICall("2");
     }
 
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -82,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String Fact = response.body().getFact();
-
-                    Toast.makeText(getApplicationContext(), Fact, Toast.LENGTH_LONG).show();
+                    saveaFact(symbol, Fact);
                 } else {
                     Toast.makeText(getApplicationContext(), "Offline", Toast.LENGTH_LONG).show();
                 }
@@ -98,6 +100,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void saveaFact(String symbol, String fact) {
+        int number = Integer.parseInt(symbol);
+        sharedPreferences
+                .edit()
+                .putString("cle_string" + number, fact)
+                .apply();
+    }
+
+
+    private void saveAllFact() {
+        for (int i = 0; i < 200; i++) {
+            APICall(Integer.toString(i));
+        }
+    }
     private void showAPIError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_LONG).show();
     }
