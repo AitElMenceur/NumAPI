@@ -36,6 +36,11 @@ public class MainController {
 
     }
 
+    /**
+     * API call which save a fact in the local cache
+     *
+     * @param symbol
+     */
     private void APICall(String symbol) {
         Call<RestNumbersAPI> call = Singletons.getgerritAPIInstance().GetJson(symbol, "true");
         call.enqueue(new Callback<RestNumbersAPI>() {
@@ -57,6 +62,11 @@ public class MainController {
         });
     }
 
+    /**
+     * store a fact
+     * @param symbol
+     * @param fact
+     */
     private void saveaFact(String symbol, Fact fact) {
         int number = Integer.parseInt(symbol);
         sharedPreferences
@@ -65,7 +75,9 @@ public class MainController {
                 .apply();
     }
 
-
+    /**
+     * Store all facts
+     */
     public void saveAllFact() {
         for (int i = 0; i < 200; i++) {
             APICall(Integer.toString(i));
