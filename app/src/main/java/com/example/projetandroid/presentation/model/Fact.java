@@ -5,14 +5,27 @@ public class Fact {
     private boolean found;
     private int number;
 
+    /**
+     * Getter for fact
+     *
+     * @return
+     */
     public String getFact() {
         return Fact;
     }
 
+    /**
+     * Getter for found
+     * @return
+     */
     public boolean isFound() {
         return found;
     }
 
+    /**
+     * Getter for number
+     * @return
+     */
     public int getNumber() {
         return number;
     }

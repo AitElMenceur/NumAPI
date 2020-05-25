@@ -40,6 +40,11 @@ public class Detail extends AppCompatActivity {
 
     }
 
+    /**
+     * Display a fact
+     *
+     * @param symbol
+     */
     public void showFact(String symbol) {
         Title = findViewById(R.id.Title);
         Title.setText(symbol);
@@ -48,11 +53,18 @@ public class Detail extends AppCompatActivity {
         Txt_Fact.setText(fact.getFact());
     }
 
-
+    /**
+     * Show a toast for API error
+     */
     public void showAPIError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Display a new Fact using an API call
+     * @param symbol
+     * @param fact
+     */
     public void showNewFact(String symbol, Fact fact) {
         Log.d("LOG", Txt_Fact.getText().toString());
         if (fact.getFact().compareToIgnoreCase(Txt_Fact.getText().toString()) == 0) {

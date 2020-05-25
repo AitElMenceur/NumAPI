@@ -41,18 +41,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
     }
 
-    /*
-     * Ajouter un element à la liste
-     * */
+    /**
+     * Add an item on screen
+     *
+     * @param position
+     * @param item
+     */
     public void add(int position, String item) {
         values.add(position, item);
 
         notifyItemInserted(position);
     }
 
-    /*
-     * Supprimer un element à la liste
-     * */
+    /**
+     * Remove an item on screen
+     * @param position
+     */
     public void remove(int position) {
         values.remove(position);
         notifyItemRemoved(position);

@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Show the list of items.
+     */
     public void ShowList() {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -60,12 +63,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Refresh on swipe
+     */
     private void Resfreshdata() {
         refreshLayout.setRefreshing(true);
         controller.saveAllFact();
         refreshLayout.setRefreshing(false);
     }
 
+    /**
+     * Display a Toast on API error
+     */
     public void showAPIError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_LONG).show();
     }

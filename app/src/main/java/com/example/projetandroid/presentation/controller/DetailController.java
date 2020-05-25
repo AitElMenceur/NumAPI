@@ -25,12 +25,18 @@ public class DetailController {
         this.sharedPreferences = sharedPreferences;
     }
 
+    /**
+     * deployed when the activity is launched
+     */
     public void onStart() {
         Intent secondIntent = view.getIntent();
         String symbol = secondIntent.getStringExtra("Number");
         view.showFact(symbol);
     }
 
+    /**
+     * deployed when the activity is refreshed using the swiperefresh
+     */
     public void onRefresh() {
         Intent secondIntent = view.getIntent();
         String symbol = secondIntent.getStringExtra("Number");
@@ -39,10 +45,19 @@ public class DetailController {
 
     }
 
+    /**
+     * @param symbol
+     * @return Get a fact from the local cache.
+     */
     public Fact getAFact(String symbol) {
         return Singletons.getGsonInstance().fromJson(sharedPreferences.getString("cle_string" + symbol, null), Fact.class);
     }
 
+    /**
+     *
+     * @param symbol
+     * Find a new fact by making an API call.
+     */
     private void getNewFact(String symbol) {
 
         Call<RestNumbersAPI> call = Singletons.getgerritAPIInstance().GetJson(symbol, "true");
