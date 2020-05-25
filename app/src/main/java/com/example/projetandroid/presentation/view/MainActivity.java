@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
 
-    MainController controller;
+    private MainController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Show the list of items.
+     */
     public void ShowList() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -60,12 +63,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
+    /**
+     * Refresh on swipe
+     */
     private void Resfreshdata() {
         refreshLayout.setRefreshing(true);
         controller.saveAllFact();
         refreshLayout.setRefreshing(false);
     }
 
+    /**
+     * Display a Toast on API error
+     */
     public void showAPIError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_LONG).show();
     }

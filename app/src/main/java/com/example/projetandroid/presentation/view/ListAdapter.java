@@ -4,17 +4,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetandroid.R;
 
 import java.util.List;
+import java.util.Random;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<String> values;
     private OnItemClickListener listener;
+    private ImageView imageView;
 
     public interface OnItemClickListener {
         void onItemClick(String item);
@@ -32,23 +36,27 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         ViewHolder(View v) {
             super(v);
             layout = v;
-            txtHeader = (TextView) v.findViewById(R.id.firstLine);
-            txtFooter = (TextView) v.findViewById(R.id.secondLine);
-            txtHeader.setText("lol");
+            txtHeader = v.findViewById(R.id.firstLine);
+            imageView = v.findViewById(R.id.imageView);
         }
     }
 
-    /*
-     * Ajouter un element à la liste
-     * */
+    /**
+     * Add an item on screen
+     *
+     * @param position
+     * @param item
+     */
     public void add(int position, String item) {
         values.add(position, item);
+
         notifyItemInserted(position);
     }
 
-    /*
-     * Supprimer un element à la liste
-     * */
+    /**
+     * Remove an item on screen
+     * @param position
+     */
     public void remove(int position) {
         values.remove(position);
         notifyItemRemoved(position);
@@ -64,8 +72,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.listener = listener;
     }
     // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
@@ -73,6 +83,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 inflater.inflate(R.layout.row_layout, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
+        Random random = new Random();
+        imageView.setColorFilter(random.nextInt());
         return vh;
     }
 
@@ -80,8 +92,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final String name = values.get(position);
+
         holder.txtHeader.setText(name);
-        holder.itemView.setOnClickListener(new OnClickListener() {
+        holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(name);

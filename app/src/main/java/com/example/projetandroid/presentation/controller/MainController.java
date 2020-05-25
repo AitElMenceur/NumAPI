@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.projetandroid.presentation.Singletons;
 import com.example.projetandroid.presentation.model.Fact;
 import com.example.projetandroid.presentation.model.RestNumbersAPI;
@@ -22,6 +24,7 @@ public class MainController {
         this.sharedPreferences = sharedPreferences;
     }
 
+
     public void onStart() {
         view.ShowList();
     }
@@ -33,11 +36,16 @@ public class MainController {
 
     }
 
+    /**
+     * API call which save a fact in the local cache
+     *
+     * @param symbol
+     */
     private void APICall(String symbol) {
         Call<RestNumbersAPI> call = Singletons.getgerritAPIInstance().GetJson(symbol, "true");
         call.enqueue(new Callback<RestNumbersAPI>() {
             @Override
-            public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
+            public void onResponse(@NonNull Call<RestNumbersAPI> call, @NonNull Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Fact fact = new Fact(response.body().getFact(), response.body().getNumber(), response.body().isFound());
                     saveaFact(symbol, fact);
@@ -47,13 +55,18 @@ public class MainController {
             }
 
             @Override
-            public void onFailure(Call<RestNumbersAPI> call, Throwable t) {
+            public void onFailure(@NonNull Call<RestNumbersAPI> call, @NonNull Throwable t) {
                 view.showAPIError();
             }
 
         });
     }
 
+    /**
+     * store a fact
+     * @param symbol
+     * @param fact
+     */
     private void saveaFact(String symbol, Fact fact) {
         int number = Integer.parseInt(symbol);
         sharedPreferences
@@ -62,7 +75,9 @@ public class MainController {
                 .apply();
     }
 
-
+    /**
+     * Store all facts
+     */
     public void saveAllFact() {
         for (int i = 0; i < 200; i++) {
             APICall(Integer.toString(i));
