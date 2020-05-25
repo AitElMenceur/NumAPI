@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "347917670419",
+    "firebase_url": "https://numapi-bd166.firebaseio.com",
+    "project_id": "numapi-bd166",
+    "storage_bucket": "numapi-bd166.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347917670419:android:9771ca962e7bef162b07e6",
+        "android_client_info": {
+          "package_name": "com.example.projetandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347917670419-r015rbeihbe00h5krrdvm0dmbdn3g6ot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZeo5U3j1XWAk0Ur1PIqGfn-kHyltb3kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347917670419-r015rbeihbe00h5krrdvm0dmbdn3g6ot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
