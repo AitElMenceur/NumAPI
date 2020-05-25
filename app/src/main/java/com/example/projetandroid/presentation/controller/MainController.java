@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.example.projetandroid.presentation.Singletons;
 import com.example.projetandroid.presentation.model.Fact;
 import com.example.projetandroid.presentation.model.RestNumbersAPI;
@@ -22,6 +24,7 @@ public class MainController {
         this.sharedPreferences = sharedPreferences;
     }
 
+
     public void onStart() {
         view.ShowList();
     }
@@ -37,7 +40,7 @@ public class MainController {
         Call<RestNumbersAPI> call = Singletons.getgerritAPIInstance().GetJson(symbol, "true");
         call.enqueue(new Callback<RestNumbersAPI>() {
             @Override
-            public void onResponse(Call<RestNumbersAPI> call, Response<RestNumbersAPI> response) {
+            public void onResponse(@NonNull Call<RestNumbersAPI> call, @NonNull Response<RestNumbersAPI> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Fact fact = new Fact(response.body().getFact(), response.body().getNumber(), response.body().isFound());
                     saveaFact(symbol, fact);
@@ -47,7 +50,7 @@ public class MainController {
             }
 
             @Override
-            public void onFailure(Call<RestNumbersAPI> call, Throwable t) {
+            public void onFailure(@NonNull Call<RestNumbersAPI> call, @NonNull Throwable t) {
                 view.showAPIError();
             }
 
