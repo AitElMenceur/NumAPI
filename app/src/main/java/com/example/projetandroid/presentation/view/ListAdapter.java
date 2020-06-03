@@ -44,8 +44,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     /**
      * Add an item on screen
      *
-     * @param position
-     * @param item
+     * @param position position of the object in the list
+     * @param item object in the list
      */
     public void add(int position, String item) {
         values.add(position, item);
@@ -55,7 +55,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     /**
      * Remove an item on screen
-     * @param position
+     * @param position position of the object in the list
      */
     public void remove(int position) {
         values.remove(position);
@@ -63,7 +63,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<String> myDataset, OnItemClickListener listener) {
+    ListAdapter(List<String> myDataset, OnItemClickListener listener) {
         this.values = myDataset;
         this.listener = listener;
     }

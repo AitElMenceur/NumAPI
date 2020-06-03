@@ -43,7 +43,7 @@ public class Detail extends AppCompatActivity {
     /**
      * Display a fact
      *
-     * @param symbol
+     * @param symbol represent the number that we want
      */
     public void showFact(String symbol) {
         Title = findViewById(R.id.Title);

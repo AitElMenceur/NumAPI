@@ -15,7 +15,7 @@ public class RestNumbersAPI {
     /**
      * Getter for number
      *
-     * @return
+     * @return Fact
      */
     public String getFact() {
         return Fact;
@@ -23,7 +23,7 @@ public class RestNumbersAPI {
 
     /**
      * Getter for fact
-     * @return
+     * @return Found
      */
     public boolean isFound() {
         return found;
@@ -31,7 +31,7 @@ public class RestNumbersAPI {
 
     /**
      * Getter for found
-     * @return
+     * @return number
      */
     public int getNumber() {
         return number;

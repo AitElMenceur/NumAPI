@@ -8,7 +8,7 @@ public class Fact {
     /**
      * Getter for fact
      *
-     * @return
+     * @return Fact
      */
     public String getFact() {
         return Fact;
@@ -16,7 +16,8 @@ public class Fact {
 
     /**
      * Getter for found
-     * @return
+
+     * @return found
      */
     public boolean isFound() {
         return found;
@@ -24,7 +25,7 @@ public class Fact {
 
     /**
      * Getter for number
-     * @return
+     * @return number
      */
     public int getNumber() {
         return number;
