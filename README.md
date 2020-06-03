@@ -23,5 +23,36 @@ fonction suplémentaires :
   - Ecran D'acceuil
   - Refresh Layout
 
-
-![Alt text](/readme picture/Startup.jpg?raw=true "Ecran d'acceuil")
+# Image
+- icone de démarrage </a>
+<p align="center">
+  <img src="./readme picture/icon.jpg" width="300" height="500"  title="icone de démarrage"> 
+</p></a>
+- Ecran d'acceuil </a>
+<p align="center">
+  <img src="./readme picture/Startup.jpg" width="300" height="500"  title="Ecran d'acceuil"> 
+  - Liste et RecyclerView </a>
+<p align="center">
+  <img src="./readme picture/list 3.jpg" width="300" height="500"  title="Liste et RecyclerView"> 
+</p></a>
+- Liste et RecyclerView </a>
+<p align="center">
+  <img src="./readme picture/list 3.jpg" width="300" height="500"  title="Liste et RecyclerView"> 
+</p></a>
+- Page d'annecdote </a>
+<p align="center">
+  <img src="./readme picture/3.jpg" width="300" height="500"  title="annecdote">
+  <img src="./readme picture/49.jpg" width="300" height="500"  title="annecdote">
+  <img src="./readme picture/132.jpg" width="300" height="500"  title="annecdote">
+</p>
+</a>
+- Refresh </a>
+<p align="center">
+  <img src="./readme picture/refresh 2.jpg" width="300" height="500"  title="Refresh">
+  <img src="./readme picture/refresh list.jpg" width="300" height="500"  title="Refresh">
+</p></a>
+- Notification </a>
+<p align="center">
+  <img src="./readme picture/notif.jpg" width="300" height="500"  title="Notification">
+ 
+</p>
