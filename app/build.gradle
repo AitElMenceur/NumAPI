@@ -62,7 +62,6 @@ dependencies {
     implementation 'org.patriques:alphavantage4j:1.4'
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
-
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.0.1"
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     testImplementation 'org.junit.jupiter:junit-jupiter'
