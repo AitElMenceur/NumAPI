@@ -1,9 +1,10 @@
 # NumAPI
 
 # Présentation
-Projet java utilisant des appels API , affichage de liste et une archtecture MVC
+Projet java utilisant des appels API , affichage de liste et une architecture MVC
 
-Cette application utilise mle lien suivant http://numbersapi.com/ afin de générer des annecdote sur un nombre
+Cette application utilise le lien suivant http://numbersapi.com/ afin de générer une anecdote sur un nombre
+
 
 
 
@@ -14,14 +15,15 @@ Cette application utilise mle lien suivant http://numbersapi.com/ afin de géné
 - Stockage de données en local 
 
 
-fonction suplémentaires :
-  - Design patern : Singleton
+fonction supplémentaires :
+  - Design pattern : Singleton
   - Affichage d'une liste dans un RecyclerView
   - Gitflow
   - Junit
   - JavaDoc
-  - Ecran D'acceuil
+  - Ecran D'accueil
   - Refresh Layout
+
 
 # Image
 - icone de démarrage </a>
@@ -29,7 +31,7 @@ fonction suplémentaires :
   <img src="./readme picture/icon.jpg" width="300" height="500"  title="icone de démarrage"> 
 </p></a>
 
-- Ecran d'acceuil </a>
+-Ecran d'accueil </a>
 <p align="center">
   <img src="./readme picture/Startup.jpg" width="300" height="500"  title="Ecran d'acceuil"> 
   </p></a>
@@ -39,7 +41,7 @@ fonction suplémentaires :
   <img src="./readme picture/list 3.jpg" width="300" height="500"  title="Liste et RecyclerView"> 
 </p></a>
 
-- Page d'annecdote </a>
+- Page d'anecdote </a>
 <p align="center">
   <img src="./readme picture/3.jpg" width="200" height="300"  title="annecdote">
   <img src="./readme picture/49.jpg" width="200" height="300"  title="annecdote">
