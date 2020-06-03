@@ -21,4 +21,7 @@ fonction suplémentaires :
   - Junit
   - JavaDoc
   - Ecran D'acceuil
-  - RefreshLayout
+  - Refresh Layout
+
+
+![Alt text](/readme picture/Startup.jpg?raw=true "Ecran d'acceuil")
