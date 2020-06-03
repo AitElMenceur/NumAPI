@@ -1,5 +1,6 @@
 package com.example.projetandroid.presentation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.RingtoneManager;
@@ -14,6 +15,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Objects;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -21,13 +24,14 @@ public class Singletons {
     private static Gson gsonInstance;
     private static GerritAPI gerritAPIInstance;
     private static SharedPreferences sharedPreferencesInstance;
+    @SuppressLint("StaticFieldLeak")
     private static NotificationCompat.Builder notificationBuilder;
 
     public static NotificationCompat.Builder getNotificationBuilder(MyFirebaseMessagingService myFirebaseMessagingService, RemoteMessage remoteMessage) {
         if (notificationBuilder == null) {
 
             return new NotificationCompat.Builder(myFirebaseMessagingService, Constant.CHANNEL_ID)
-                    .setContentTitle(remoteMessage.getNotification().getTitle())
+                    .setContentTitle(Objects.requireNonNull(remoteMessage.getNotification()).getTitle())
                     .setContentText(remoteMessage.getNotification().getBody())
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setStyle(new NotificationCompat.BigTextStyle())

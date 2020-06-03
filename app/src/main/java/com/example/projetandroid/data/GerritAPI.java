@@ -1,7 +1,6 @@
 package com.example.projetandroid.data;
 
 import com.example.projetandroid.presentation.model.RestNumbersAPI;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
