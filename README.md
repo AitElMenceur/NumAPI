@@ -41,9 +41,9 @@ fonction suplémentaires :
 
 - Page d'annecdote </a>
 <p align="center">
-  <img src="./readme picture/3.jpg" width="300" height="500"  title="annecdote">
-  <img src="./readme picture/49.jpg" width="300" height="500"  title="annecdote">
-  <img src="./readme picture/132.jpg" width="300" height="500"  title="annecdote">
+  <img src="./readme picture/3.jpg" width="200" height="300"  title="annecdote">
+  <img src="./readme picture/49.jpg" width="200" height="300"  title="annecdote">
+  <img src="./readme picture/132.jpg" width="200" height="300"  title="annecdote">
 </p></a>
 
 - Refresh </a>
