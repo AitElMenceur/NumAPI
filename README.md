@@ -13,11 +13,10 @@ Cette application utilise le lien suivant http://numbersapi.com/ afin de génér
 - Appel REST
 - Architecture MVC
 - Stockage de données en local 
-
+- Affichage d'une liste dans un RecyclerView
 
 fonction supplémentaires :
   - Design pattern : Singleton
-  - Affichage d'une liste dans un RecyclerView
   - Gitflow
   - Junit
   - JavaDoc
