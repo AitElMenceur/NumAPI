@@ -4,9 +4,8 @@
 - Ait El Menceur Ilyès
 
 ## Présentation
-Projet java utilisant des appels API , affichage de liste et une architecture MVC
-
-Cette application utilise le lien suivant http://numbersapi.com/ afin de générer une anecdote sur un nombre
+Projet java utilisant des appels API, affichant de liste de numéro.
+Cette application utilise le service suivant http://numbersapi.com/ afin de générer une anecdote sur un nombre
 
 
 ## Prérequis 
