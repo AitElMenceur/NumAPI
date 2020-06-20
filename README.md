@@ -22,6 +22,7 @@ fonction supplémentaires :
   - Junit
   - JavaDoc
   - Ecran D'accueil
+  - Icone pour l'application 
   - Refresh Layout
 
 
@@ -57,4 +58,6 @@ fonction supplémentaires :
 - Notification </a>
 <p align="center">
   <img src="./readme picture/notif.jpg" width="300" height="500"  title="Notification">
+  <img src="./readme picture/Notif 2.jpg" width="300" height="500"  title="Notification">
 </p>
+
