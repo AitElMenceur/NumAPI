@@ -3,7 +3,6 @@ package com.example.projetandroid.presentation.model;
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import com.example.projetandroid.presentation.Singletons;
@@ -20,7 +19,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
         assert notificationManager != null;
         notificationManager.notify(0, notificationBuilder.build());
     }

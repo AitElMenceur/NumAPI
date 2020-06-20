@@ -16,6 +16,7 @@ public class Fact {
 
     /**
      * Getter for found
+
      * @return found
      */
     public boolean isFound() {
