@@ -20,7 +20,7 @@ https://github.com/AitElMenceur/NumAPI.git
 ````
 
 
-#" Consigne respecté 
+## Consigne respecté 
 
 - Appel REST
 - Architecture MVC
@@ -37,13 +37,13 @@ fonction supplémentaires :
   - Refresh Layout
 
 
-"# Image
+## Image
 - icone de démarrage </a>
 <p align="center">
   <img src="./readme picture/icon.jpg" width="300" height="500"  title="icone de démarrage"> 
 </p></a>
 
--Ecran d'accueil </a>
+- Ecran d'accueil </a>
 <p align="center">
   <img src="./readme picture/Startup.jpg" width="300" height="500"  title="Ecran d'acceuil"> 
   </p></a>
