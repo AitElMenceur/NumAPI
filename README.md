@@ -1,14 +1,26 @@
 # NumAPI
+## Membres de l'équipe (3A)
 
-# Présentation
+- Ait El Menceur Ilyès
+
+## Présentation
 Projet java utilisant des appels API , affichage de liste et une architecture MVC
 
 Cette application utilise le lien suivant http://numbersapi.com/ afin de générer une anecdote sur un nombre
 
 
+## Prérequis 
+
+- Installation d'Android Studio
+- Récupérer la branche develop<br/>
 
 
-# Consigne respecté 
+````
+https://github.com/AitElMenceur/NumAPI.git
+````
+
+
+#" Consigne respecté 
 
 - Appel REST
 - Architecture MVC
@@ -25,7 +37,7 @@ fonction supplémentaires :
   - Refresh Layout
 
 
-# Image
+"# Image
 - icone de démarrage </a>
 <p align="center">
   <img src="./readme picture/icon.jpg" width="300" height="500"  title="icone de démarrage"> 
