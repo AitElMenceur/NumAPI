@@ -11,7 +11,7 @@ Cette application utilise le service suivant http://numbersapi.com/ afin de gén
 ## Prérequis 
 
 - Installation d'Android Studio
-- Récupérer la branche develop<br/>
+- Récupérer la branche master<br/>
 
 
 ````
@@ -19,14 +19,14 @@ https://github.com/AitElMenceur/NumAPI.git
 ````
 
 
-## Consigne respecté 
+## Consigne respectées  
 
 - Appel REST
 - Architecture MVC
 - Stockage de données en local 
 - Affichage d'une liste dans un RecyclerView
 
-fonction supplémentaires :
+fonctions supplémentaires :
   - Design pattern : Singleton
   - Gitflow
   - Junit
@@ -36,7 +36,7 @@ fonction supplémentaires :
   - Refresh Layout
 
 
-## Image
+## Images
 - icone de démarrage </a>
 <p align="center">
   <img src="./readme picture/icon.jpg" width="300" height="500"  title="icone de démarrage"> 
